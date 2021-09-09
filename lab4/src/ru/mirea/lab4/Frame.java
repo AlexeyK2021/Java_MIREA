@@ -20,7 +20,7 @@ public class Frame extends JFrame {
     Frame() {
         super("Score counter");
         setLayout(new FlowLayout());
-        setSize(300, 300);
+        setSize(400, 400);
         setVisible(true);
 
         JPanel buttons = new JPanel();
