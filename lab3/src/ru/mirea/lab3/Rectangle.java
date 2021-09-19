@@ -1,4 +1,5 @@
 package ru.mirea.lab3;
+import java.lang.*;
 
 public class Rectangle extends Shape {
     protected double width;

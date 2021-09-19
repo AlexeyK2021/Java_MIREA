@@ -1,6 +1,5 @@
 package ru.mirea.lab3;
 
-
 public class testShape {
     public static void main(String[] args) {
         Shape s1 = new Circle(5.5, "RED", false);

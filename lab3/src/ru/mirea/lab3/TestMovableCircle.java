@@ -1,7 +1,7 @@
 package ru.mirea.lab3;
 import java.lang.*;
 
-public class TestMovable {
+public class TestMovableCircle {
     public static void main(String[] args) {
         MovableCircle circle = new MovableCircle(3,5,1,1,5);
         System.out.println(circle.toString());
