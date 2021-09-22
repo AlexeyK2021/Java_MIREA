@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FurnitureShop {
-    private static List<Furniture> furnitures = new ArrayList<Furniture>();
+    private static ArrayList<Furniture> furnitures = new ArrayList<Furniture>();
 
     public static void main(String[] args) {
 
