@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de24a9ba-a4c6-4092-b2fc-981137e4cdfd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../lab18/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab18/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../~$ОТЧЕТ.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../~$ОТЧЕТ.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ОТЧЕТ.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../ОТЧЕТ.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab20/src/ru/mirea/lab20/FurnitureShop.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab20/src/ru/mirea/lab20/FurnitureShop.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

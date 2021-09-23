@@ -1,7 +1,6 @@
 package ru.mirea.lab20;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class FurnitureShop {
     private static ArrayList<Furniture> furnitures = new ArrayList<Furniture>();

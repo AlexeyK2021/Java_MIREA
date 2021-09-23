@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Java_MIREA.iml" filepath="$PROJECT_DIR$/Java_MIREA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lab22/lab22.iml" filepath="$PROJECT_DIR$/lab22/lab22.iml" />
     </modules>
   </component>
 </project>
