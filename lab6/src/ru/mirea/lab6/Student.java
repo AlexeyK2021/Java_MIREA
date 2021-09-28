@@ -2,10 +2,10 @@ package ru.mirea.lab6;
 
 public class Student implements Comparable<Student> {
     private double averageMark;
-    private double course;
+    private int course;
     private String name;
 
-    public Student(String name, double averageMark, double course) {
+    public Student(String name, double averageMark, int course) {
         this.averageMark = averageMark;
         this.course = course;
         this.name = name;
@@ -19,11 +19,11 @@ public class Student implements Comparable<Student> {
         this.averageMark = averageMark;
     }
 
-    public double getCourse() {
+    public int getCourse() {
         return course;
     }
 
-    public void setCourse(double course) {
+    public void setCourse(int course) {
         this.course = course;
     }
 

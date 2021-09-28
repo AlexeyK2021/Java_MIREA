@@ -13,8 +13,6 @@ public class Frame extends JFrame {
     private JButton TNR = new JButton("Times New Roman");
     private JButton Sans = new JButton("MS Sans Serif");
     private JButton CN = new JButton("Courier New");
-    private static String FontNow;
-    private static String ColorNow;
 
     Frame() {
         super("Text Editor");

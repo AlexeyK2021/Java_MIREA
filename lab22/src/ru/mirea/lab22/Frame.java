@@ -7,7 +7,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Frame extends JFrame {
@@ -38,7 +37,7 @@ public class Frame extends JFrame {
             drawIcon(images.get(ImgNumber));
             ImgNumber++;
             try {
-                Thread.sleep(200);
+                Thread.sleep(150);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
