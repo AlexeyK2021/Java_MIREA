@@ -7,7 +7,7 @@ public class Sorting {
 
         int mid = (low + high) / 2;
         mergeSort(array, low, mid);
-        mergeSort(array, mid + 1, high);
+        mergeSort(array, (mid + 1), high);
         merge(array, low, mid, high);
     }
 
@@ -43,7 +43,6 @@ public class Sorting {
     }
 
     public static void main(String[] args) {
-
         Comparable<Student>[] studentsM = new Comparable[8];
         studentsM[0] = new Student("Alexey", 4.78, 2);
         studentsM[1] = new Student("Alexander", 4.06, 1);
@@ -67,9 +66,10 @@ public class Sorting {
         Comparable<Student>[] students = new Comparable[16];
         for (int i = 0; i < studentsM.length; i++) students[i] = studentsM[i];
         for (int i = 0; i < studentsM.length; i++) students[i + studentsM.length] = studentsF[i];
+
         for (Comparable<Student> elem : students) {
-            Student student = (Student)elem;
-            System.out.printf("%-10s %-1f %-1d",student.getName(),student.getAverageMark(),student.getCourse());
+            Student student = (Student) elem;
+            System.out.printf("%-10s %-1f %-1d", student.getName(), student.getAverageMark(), student.getCourse());
             System.out.println();
         }
         System.out.println("\n");
@@ -77,8 +77,8 @@ public class Sorting {
 
 
         for (Comparable<Student> elem : students) {
-            Student student = (Student)elem;
-            System.out.printf("%-10s %-1f %-1d",student.getName(),student.getAverageMark(),student.getCourse());
+            Student student  = (Student) elem;
+            System.out.printf("%-10s %-1f %-1d", student.getName(), student.getAverageMark(), student.getCourse());
             System.out.println();
         }
     }
