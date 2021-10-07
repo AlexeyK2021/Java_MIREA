@@ -14,22 +14,24 @@ public class Main {
 
         int actions = 0;
         while (first.size() > 0 && second.size() > 0) {
-            if (first.getFirst().getValue() < second.getFirst().getValue()) {// первая по старшинству больше второй
-                second.add(first.getFirst());
-                second.add(second.getFirst());
-                first.removeFirst();
-                second.removeFirst();
-                actions += 1;
-            } else if (first.getFirst().getValue() > second.getFirst().getValue()) {// первая по старшинству меньше второй
+            if (actions >= 106) {
+                System.out.println("botva");
+                break;
+            } else if (first.getFirst().getValue() > second.getFirst().getValue() || ((first.getFirst().getValue() == 0) && (second.getFirst().getValue() == 9))) {
                 first.add(first.getFirst());
                 first.add(second.getFirst());
                 first.removeFirst();
                 second.removeFirst();
                 actions += 1;
+            } else if (first.getFirst().getValue() < second.getFirst().getValue() || ((first.getFirst().getValue() == 9) && (second.getFirst().getValue() == 0))) {
+                second.add(second.getFirst());
+                second.add(first.getFirst());
+                first.removeFirst();
+                second.removeFirst();
+                actions += 1;
             }
-            if (first.size() == 0) System.out.println("first " + actions);
-            else if (second.size() == 0) System.out.println("second " + actions);
         }
+        if (first.size() == 0) System.out.println("first " + actions);
+        else if (second.size() == 0) System.out.println("second " + actions);
     }
 }
-//https://gist.github.com/SergeyRybchenko
