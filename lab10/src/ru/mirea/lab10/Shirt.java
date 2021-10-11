@@ -13,8 +13,24 @@ public class Shirt {
         this.size = size;
     }
 
+    public String getNumber() {
+        return number;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
     @Override
     public String toString() {
-        return number + "," + name + " " + color + "," + size;
+        return number + "," + name + "," + color + "," + size;
     }
 }

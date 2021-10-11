@@ -18,8 +18,16 @@ public class Main {
         shirts[10] = "S011,Maroon Polo Shirt,Maroon,S";
 
         ArrayList<Shirt> shirtArrayList = new ArrayList<>();
-        for (int i =0;i< shirts.length;i++){
-            shirtArrayList.add(new Shirt(shirts[i].substring(0,3),))
+        for (int i = 0; i < shirts.length; i++) {
+            String number, name, color, size;
+            number = shirts[i].substring(0, shirts[i].indexOf(','));
+            name = shirts[i].substring(5, shirts[i].indexOf(',', 6));
+            color = shirts[i].substring(shirts[i].indexOf(',', 10) + 1, shirts[i].lastIndexOf(','));
+            size = shirts[i].substring(shirts[i].lastIndexOf(',') + 1);
+            shirtArrayList.add(new Shirt(number, name, color, size));
+        }
+        for (Shirt shirt : shirtArrayList) {
+            System.out.println(shirt.toString());
         }
     }
 }

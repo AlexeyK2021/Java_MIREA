@@ -1,6 +1,5 @@
 package ru.mirea.lab24;
 
-import java.util.Random;
 
 public class TestList {
     public static void main(String[] args) {
@@ -13,8 +12,8 @@ public class TestList {
         System.out.println();
         printArray(my1);
         printArray(my1);
-        my1.remove(2);
-        my1.remove(2);
+        my1.remove(0);
+        my1.remove(0);
         printArray(my1);
 
     }
