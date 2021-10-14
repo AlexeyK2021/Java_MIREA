@@ -34,7 +34,6 @@ public class MyList<T> {
         size--;
         if (array.length > INIT_SIZE && pointer < array.length / CUT_RATE)
             resize(array.length / 2);
-
     }
 
     public int Count() {
