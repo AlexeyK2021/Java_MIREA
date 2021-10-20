@@ -22,7 +22,7 @@ public class Main {
         System.out.println("Введите свой ИНН");
         INN = scan.nextLine();
 
-        if (INN.length() != 12 || Long.parseLong(INN) < 99999999999L)
+        if (INN.length() > 12 || Long.parseLong(INN) < 99999999999L)
             throw new MyException("Ошибка проверки ИНН. Несуществующий ИНН");
         else System.out.println("Покупка успешна!");
 

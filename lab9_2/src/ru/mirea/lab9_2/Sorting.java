@@ -1,5 +1,6 @@
 package ru.mirea.lab9_2;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Sorting {
@@ -87,7 +88,7 @@ public class Sorting {
         }
         System.out.println("Do you want find the student by his name[Y/N]?");
         String want = scan.nextLine();
-        if (want == "Y" || want == "y") {
+        if (Objects.equals(want, "Y") || Objects.equals(want, "y")) {
             System.out.println("Enter student name:");
             String name = scan.nextLine();
             try {
