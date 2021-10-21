@@ -1,13 +1,14 @@
 package ru.mirea.lab13;
 
 public class Complex {
-    private String value;
+    String value;
 
     Complex() {
+        value = "0+0i";
     }
 
-    Complex(String value) {
-        this.value = value;
+    Complex(int real, int image) {
+        value = real + (image > 0 ? "+" : "") + image + "i";
     }
 
     public String getValue() {

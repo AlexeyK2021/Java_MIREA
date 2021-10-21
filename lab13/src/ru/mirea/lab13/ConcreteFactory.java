@@ -1,8 +1,6 @@
 package ru.mirea.lab13;
 
-public class ConcreteFactory implements ComplexAbstractFactory {
-    ConcreteFactory() {
-    }
+public class ConcreteFactory implements ComplexAbstractFactory{
 
     @Override
     public Complex createComplex() {
@@ -11,10 +9,6 @@ public class ConcreteFactory implements ComplexAbstractFactory {
 
     @Override
     public Complex CreateComplex(int real, int image) {
-        return new Complex(real + "+" + image + "i");
-    }
-
-    public String getValue(Complex number) {
-        return number.getValue();
+        return new Complex(real,image);
     }
 }
