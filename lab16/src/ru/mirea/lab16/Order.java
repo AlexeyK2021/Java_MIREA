@@ -70,5 +70,6 @@ public class Order {
                 }
             }
         }
+        return array;
     }
 }
