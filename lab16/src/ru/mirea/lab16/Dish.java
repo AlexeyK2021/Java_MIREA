@@ -1,11 +1,11 @@
 package ru.mirea.lab16;
 
 public final class Dish implements Item {
-    private final float price;
+    private final int price;
     private final String name;
     private final String description;
 
-    public Dish(float price, String name, String description) {
+    public Dish(int price, String name, String description) {
         this.price = price;
         this.name = name;
         this.description = description;
@@ -18,7 +18,7 @@ public final class Dish implements Item {
     }
 
     @Override
-    public float getCost() {
+    public int getCost() {
         return price;
     }
 

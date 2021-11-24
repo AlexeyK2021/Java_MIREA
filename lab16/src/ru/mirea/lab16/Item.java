@@ -1,7 +1,7 @@
 package ru.mirea.lab16;
 
 public interface Item {
-    float getCost();
+    int getCost();
     String getName();
     String getDescription();
 }

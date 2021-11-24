@@ -1,11 +1,11 @@
 package ru.mirea.lab16;
 
 public final class Drink implements Item{
-    private final float price;
+    private final int price;
     private final String name;
     private final String description;
 
-    public Drink(float price, String name, String description) {
+    public Drink(int price, String name, String description) {
         this.price = price;
         this.name = name;
         this.description = description;
@@ -17,7 +17,7 @@ public final class Drink implements Item{
         price = 0;
     }
 
-    public float getCost() {
+    public int getCost() {
         return price;
     }
 

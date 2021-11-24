@@ -1,43 +1,57 @@
 package ru.mirea.lab19;
 
 public class ArrayQueueModule {
-    private int size;
-    private Object[] elements = new Object[5];
+    private Object[] elements;
+    private static ArrayQueueModule instance;
+    protected int head, tail;
+    protected final int START_CAPACITY = 16;
 
-    public void enqueue(Object element) {
-        editCapacity(size + 1);
-        elements[++size] = element;
+    public ArrayQueueModule() {
+        elements = new Object[START_CAPACITY];
+        head = tail = 0;
     }
 
-    private void editCapacity(int capacity) {
-        Object[] NewQueue = new Object[capacity];
-        if (capacity > elements.length) {
-            System.arraycopy(elements, 0, NewQueue, 0, elements.length);
-        } else if (capacity < elements.length) {
-            System.arraycopy(elements, 1, NewQueue, 0, elements.length - 1);
-        }
-        elements = NewQueue;
+    public static ArrayQueueModule getInstance() {
+        if (instance == null) instance = new ArrayQueueModule();
+        return instance;
+    }
+
+    public Object dequeue() throws IndexOutOfBoundsException {
+        if (isEmpty()) throw new IndexOutOfBoundsException("Queue is EMPTY!");
+        Object temp = elements[head++];
+        if (head == elements.length) head = 0;
+        if (Math.abs(head - tail) < (elements.length / 2)) resize(elements.length / 2);
+        return temp;
+    }
+
+    public void enqueue(Object element) {
+        elements[tail++] = element;
+        if (elements.length == tail) tail = 0;
+        if (head == tail) resize(elements.length / 2);
+    }
+
+    private void resize(int newSize) {
+        Object[] newQueue = new Object[newSize];
+        int q = Math.abs(head - tail);
+        System.arraycopy(elements, head, newQueue, 0, q);
+        tail = q;
+        head = 0;
+        elements = newQueue;
     }
 
     public Object element() {
-        return elements[0];
+        if (isEmpty()) throw new IndexOutOfBoundsException("Queue is EMPTY!");
+        return elements[head];
     }
 
-    public Object dequeue() {
-        Object elem = elements[0];
-        editCapacity(size - 1);
-        return elem;
-    }
-
-    public int size() {
-        return size;
+    public boolean clear() {
+        boolean isEmpty = isEmpty();
+        head = tail =0;
+        resize(START_CAPACITY);
+        return !isEmpty;
     }
 
     public boolean isEmpty() {
-        return size == 0;
-    }
-
-    public void Clear() {
-        elements = new Object[0];
+        return head == tail;
     }
 }
