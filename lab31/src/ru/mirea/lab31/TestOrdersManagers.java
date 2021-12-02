@@ -8,6 +8,8 @@ public class TestOrdersManagers {
         internetOrder.add(new Dish(1500, "Salad", "Salad with shrimps"));
         internetOrder.add(new Dish(2000, "Olivier", "Olivier with chicken"));
         internetOrder.add(new Drink(1500, "Wine", "Wine from 1976", DrinkTypeEnum.WINE));
+        internetOrder.setCostumer(new Customer("Alexey", "Kalashnikov", 18, new Address("Moscow", 117463, "Karamzina", 50, 'a', 100)));
+
         InternetOrdersManager internetOrdersManager = new InternetOrdersManager();
         try {
             internetOrdersManager.add("2", internetOrder);
@@ -19,6 +21,7 @@ public class TestOrdersManagers {
         tableOrder.add(new Drink(1500, "Whiskey", "Best type of alcohol", DrinkTypeEnum.WHISKEY));
         tableOrder.add(new Dish(1500, "Salad", "Salad with shrimps"));
         tableOrder.add(new Dish(2000, "Olivier", "Olivier with chicken"));
+        tableOrder.setCostumer(new Customer("Noname", "Noname", 27, new Address()));
         TablesOrdersManager tablesOrdersManager = new TablesOrdersManager();
         try {
             tablesOrdersManager.add(tableOrder, 5);

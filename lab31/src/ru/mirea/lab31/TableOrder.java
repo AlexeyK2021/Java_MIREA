@@ -2,7 +2,7 @@ package ru.mirea.lab31;
 
 public class TableOrder implements Order {
     private MenuItem[] items = new MenuItem[0];
-
+    private  Customer customer;
     TableOrder() {
     }
 
@@ -135,10 +135,10 @@ public class TableOrder implements Order {
         return array;
     }
     public Customer getCostumer(){
-      return costumer;
+      return customer;
     }
-    public Customer setCostumer(Costumer costumer){
-      this.costumer = costumer;
+    public void setCostumer(Customer costumer){
+      this.customer = costumer;
     }
 
 }

@@ -185,10 +185,12 @@ public class InternetOrder implements Order {
         }
         return array;
     }
-public Customer getCostumer(){
-  return costumer;
-}
-public Customer setCostumer(Costumer costumer){
-  this.costumer = costumer;
-}
+
+    public Customer getCostumer() {
+        return customer;
+    }
+
+    public void setCostumer(Customer costumer) {
+        this.customer = costumer;
+    }
 }
