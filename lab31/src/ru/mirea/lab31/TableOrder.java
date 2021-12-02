@@ -134,4 +134,11 @@ public class TableOrder implements Order {
         }
         return array;
     }
+    public Customer getCostumer(){
+      return costumer;
+    }
+    public Customer setCostumer(Costumer costumer){
+      this.costumer = costumer;
+    }
+
 }

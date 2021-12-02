@@ -3,6 +3,7 @@ package ru.mirea.lab31;
 public class InternetOrder implements Order {
     private ListNode head, tail;
     private int size;
+    private Customer customer;
 
     public InternetOrder() {
         head = tail = new ListNode();
@@ -184,4 +185,10 @@ public class InternetOrder implements Order {
         }
         return array;
     }
+public Customer getCostumer(){
+  return costumer;
+}
+public Customer setCostumer(Costumer costumer){
+  this.costumer = costumer;
+}
 }
