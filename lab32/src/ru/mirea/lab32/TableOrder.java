@@ -2,7 +2,8 @@ package ru.mirea.lab32;
 
 public class TableOrder implements Order {
     private MenuItem[] items = new MenuItem[0];
-    private  Customer customer;
+    private Customer customer;
+
     TableOrder() {
     }
 

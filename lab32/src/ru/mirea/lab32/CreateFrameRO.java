@@ -2,14 +2,18 @@ package ru.mirea.lab32;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
-public class CreateFrame extends JFrame {
-    CreateFrame(ArrayList<InternetOrder> internetOrders) {
+public class CreateFrameRO extends JFrame {
+    public CreateFrameRO(ArrayList<TableOrder> restaurantOrders) {
         setVisible(true);
         setLayout(new GridLayout(3, 1));
-        setSize(300, 300);
+        setSize(500, 500);
+
         JPanel Person = new JPanel();
         JTextField name = new JTextField();
         JTextField SecondName = new JTextField();
@@ -23,31 +27,6 @@ public class CreateFrame extends JFrame {
         Person.add(new Label("Age: "));
         Person.add(Age);
         add(Person);
-
-        JPanel Address = new JPanel();
-
-        JTextField CityName = new JTextField();
-        JTextField ZIP = new JTextField();
-        JTextField streetName = new JTextField();
-        JTextField buildingNumber = new JTextField();
-        JTextField buildingLetter = new JTextField();
-        JTextField apartmentNumber = new JTextField();
-
-        Address.setLayout(new GridLayout(6, 2));
-        Address.add(new Label("City name: "));
-        Address.add(CityName);
-        Address.add(new Label("ZIP code: "));
-        Address.add(ZIP);
-        Address.add(new Label("Street: "));
-        Address.add(streetName);
-        Address.add(new Label("House number: "));
-        Address.add(buildingNumber);
-        Address.add(new Label("House letter: "));
-        Address.add(buildingLetter);
-        Address.add(new Label("Apartment number: "));
-        Address.add(apartmentNumber);
-
-        add(Address);
 
         JPanel Items = new JPanel();
         Items.setLayout(new GridLayout(4, 3));
@@ -64,6 +43,7 @@ public class CreateFrame extends JFrame {
         JCheckBox Coffee = new JCheckBox("Coffee");
 
         ArrayList<MenuItem> orders = new ArrayList<>();
+
         Salad.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -72,7 +52,6 @@ public class CreateFrame extends JFrame {
                 } else orders.remove(new Dish(1500, "Salad", "Salad with shrimps"));
             }
         });
-
         Olivier.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -143,7 +122,7 @@ public class CreateFrame extends JFrame {
             public void itemStateChanged(ItemEvent e) {
                 if (Coffee.isSelected()) {
                     orders.add(new Drink(400, "Coffee", "Cappuccino", DrinkTypeEnum.COFFEE));
-                } else orders.add(new Drink(400, "Coffee", "Cappuccino", DrinkTypeEnum.COFFEE));
+                } else orders.remove(new Drink(400, "Coffee", "Cappuccino", DrinkTypeEnum.COFFEE));
             }
         });
 
@@ -172,22 +151,31 @@ public class CreateFrame extends JFrame {
         Save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Customer customer = new Customer(
-                        name.getText(),
-                        SecondName.getText(),
-                        Integer.parseInt(Age.getText()),
-                        new Address(CityName.getText(),
-                                Integer.parseInt(ZIP.getText()),
-                                streetName.getText(),
-                                Integer.parseInt(buildingNumber.getText()),
-                                buildingLetter.getText().toCharArray()[0],
-                                Integer.parseInt(apartmentNumber.getText())
-                        ));
-                InternetOrder order = new InternetOrder();
-                for (MenuItem item : orders) {
-                    order.add(item);
+                try {
+                    Customer customer = new Customer(
+                            name.getText(),
+                            SecondName.getText(),
+                            Integer.parseInt(Age.getText()),
+                            new Address()
+                    );
+                    TableOrder order = new TableOrder();
+                    order.setCostumer(new Customer(
+                                    name.getText(),
+                                    SecondName.getText(),
+                                    Integer.parseInt(Age.getText()),
+                                    new Address()
+                            )
+                    );
+                    for (MenuItem item : orders) {
+                        order.add(item);
+                    }
+                    restaurantOrders.add(order);
+                } catch (NumberFormatException NFE) {
+                    JOptionPane.showMessageDialog(new JFrame(), "Error in typed information!", "Error", JOptionPane.WARNING_MESSAGE);
+                    return;
                 }
-                internetOrders.add(order);
+                setVisible(false);
+                dispose();
             }
         });
         Cancel.addActionListener(new ActionListener() {
