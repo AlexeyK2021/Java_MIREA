@@ -14,4 +14,6 @@ public interface Order {
     MenuItem[] sortedDishesByCost();
     public Customer getCostumer();
     public void setCostumer(Customer costumer);
+    public int getTable();
+    public void setTable(int table);
 }

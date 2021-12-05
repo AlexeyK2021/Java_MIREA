@@ -3,6 +3,7 @@ package ru.mirea.lab32;
 public class TableOrder implements Order {
     private MenuItem[] items = new MenuItem[0];
     private Customer customer;
+    private int Table;
 
     TableOrder() {
     }
@@ -10,7 +11,8 @@ public class TableOrder implements Order {
     @Override
     public boolean add(MenuItem AddingItem) {
         MenuItem[] New = new MenuItem[items.length + 1];
-        if (items.length != 0) System.arraycopy(items, 0, New, 0, items.length);
+        if (items.length != 0)
+            System.arraycopy(items, 0, New, 0, items.length);
         New[items.length] = AddingItem;
         items = New;
         return true;
@@ -144,4 +146,11 @@ public class TableOrder implements Order {
       this.customer = costumer;
     }
 
+    public int getTable() {
+        return Table;
+    }
+
+    public void setTable(int table) {
+        Table = table;
+    }
 }

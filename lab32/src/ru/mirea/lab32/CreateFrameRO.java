@@ -9,23 +9,26 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 public class CreateFrameRO extends JFrame {
-    public CreateFrameRO(ArrayList<TableOrder> restaurantOrders) {
+    public CreateFrameRO(TablesOrdersManager restaurantOrders) {
         setVisible(true);
         setLayout(new GridLayout(3, 1));
         setSize(500, 500);
 
         JPanel Person = new JPanel();
-        JTextField name = new JTextField();
+        JTextField Name = new JTextField();
         JTextField SecondName = new JTextField();
         JTextField Age = new JTextField();
+        JTextField Table = new JTextField();
 
         Person.setLayout(new GridLayout(4, 2));
         Person.add(new Label("Name: "));
-        Person.add(name);
+        Person.add(Name);
         Person.add(new Label("Second Name: "));
         Person.add(SecondName);
         Person.add(new Label("Age: "));
         Person.add(Age);
+        Person.add(new JLabel("Table number :"));
+        Person.add(Table);
         add(Person);
 
         JPanel Items = new JPanel();
@@ -152,15 +155,9 @@ public class CreateFrameRO extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Customer customer = new Customer(
-                            name.getText(),
-                            SecondName.getText(),
-                            Integer.parseInt(Age.getText()),
-                            new Address()
-                    );
                     TableOrder order = new TableOrder();
                     order.setCostumer(new Customer(
-                                    name.getText(),
+                                    Name.getText(),
                                     SecondName.getText(),
                                     Integer.parseInt(Age.getText()),
                                     new Address()
@@ -169,9 +166,12 @@ public class CreateFrameRO extends JFrame {
                     for (MenuItem item : orders) {
                         order.add(item);
                     }
-                    restaurantOrders.add(order);
+                    restaurantOrders.add(order, Integer.parseInt(Table.getText()));
                 } catch (NumberFormatException NFE) {
                     JOptionPane.showMessageDialog(new JFrame(), "Error in typed information!", "Error", JOptionPane.WARNING_MESSAGE);
+                    return;
+                } catch (OrderAlreadyAddedException OAAE) {
+                    JOptionPane.showMessageDialog(new JFrame(), "Order already added!", "Error", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
                 setVisible(false);

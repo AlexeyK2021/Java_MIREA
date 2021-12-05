@@ -6,7 +6,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 public class CreateFrameIO extends JFrame {
-    CreateFrameIO(ArrayList<InternetOrder> internetOrders) {
+    CreateFrameIO(InternetOrdersManager internetOrdersManager) {
         super("Creating Internet Order");
         setVisible(true);
         setLayout(new GridLayout(4, 1));
@@ -16,6 +16,7 @@ public class CreateFrameIO extends JFrame {
         JTextField name = new JTextField();
         JTextField SecondName = new JTextField();
         JTextField Age = new JTextField();
+        JTextField Table = new JTextField();
 
         Person.setLayout(new GridLayout(4, 2));
         Person.add(new Label("Name: "));
@@ -24,6 +25,8 @@ public class CreateFrameIO extends JFrame {
         Person.add(SecondName);
         Person.add(new Label("Age: "));
         Person.add(Age);
+        Person.add(new JLabel("Table number :"));
+        Person.add(Table);
         add(Person);
 
         JPanel Address = new JPanel();
@@ -173,7 +176,6 @@ public class CreateFrameIO extends JFrame {
         Save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean isWorking = true;
                 try {
                     Customer customer = new Customer(
                             name.getText(),
@@ -190,12 +192,17 @@ public class CreateFrameIO extends JFrame {
                     for (MenuItem item : orders) {
                         order.add(item);
                     }
-                    internetOrders.add(order);
+                    internetOrdersManager.add(Table.getText(), order);
                 } catch (NumberFormatException NFE) {
-                    JOptionPane.showMessageDialog(new JFrame("Error"), "Error in typed information!", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(new JFrame("Error"), "Error in typed information!", "Error", JOptionPane.WARNING_MESSAGE);
+                    return;
+                } catch (OrderAlreadyAddedException OAAE) {
+                    JOptionPane.showMessageDialog(new JFrame(), "Order already added!", "Error", JOptionPane.WARNING_MESSAGE);
+                    return;
                 }
+                setVisible(false);
+                dispose();
             }
-
         });
         Cancel.addActionListener(new ActionListener() {
             @Override

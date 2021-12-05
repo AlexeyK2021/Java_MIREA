@@ -2,94 +2,54 @@ package ru.mirea.lab32;
 
 public class TablesOrdersManager implements OrdersManager {
     TableOrder[] orders = new TableOrder[0];
-    int[] tables = new int[0];
 
     TablesOrdersManager() {
     }
 
     public void add(TableOrder tableOrder, int tableNumber) throws OrderAlreadyAddedException {
-        boolean isOccupied = false;
-        for (int i : tables) {
-            if (i == tableNumber) {
-                isOccupied = true;
-                break;
-            }
+        for (Order o : orders) {
+            if (o.getTable() == tableNumber)
+                throw new OrderAlreadyAddedException("The table " + tableNumber + " is already occupied!");
         }
-        if (isOccupied) throw new OrderAlreadyAddedException("The table " + tableNumber + " is already occupied!");
-        else {
-            TableOrder[] newTableOrder = new TableOrder[orders.length + 1];
-            int[] NewTables = new int[tables.length + 1];
+        TableOrder[] newTableOrder = new TableOrder[orders.length + 1];
+        if (orders.length != 0)
+            System.arraycopy(orders, 0, newTableOrder, 0, orders.length);
 
-            if (orders.length != 0)
-                System.arraycopy(orders, 0, newTableOrder, 0, orders.length);
-
-            if (tables.length != 0)
-                System.arraycopy(tables, 0, NewTables, 0, tables.length);
-
-            newTableOrder[orders.length] = tableOrder;
-            NewTables[tables.length] = tableNumber;
-
-            orders = newTableOrder;
-            tables = NewTables;
-        }
+        tableOrder.setTable(tableNumber);
+        newTableOrder[orders.length] = tableOrder;
+        orders = newTableOrder;
     }
 
     public TableOrder getOrder(int tableNumber) throws IllegalTableNumber {
-        boolean isExist = false;
-        for (int i = 0; i < tables.length; i++) {
-            if (tables[i] == tableNumber) {
-                isExist = true;
-                break;
+        for (TableOrder to : orders) {
+            if (to.getTable() == tableNumber) {
+                return to;
             }
         }
-        if (!isExist) throw new IllegalTableNumber(String.valueOf(tableNumber));
-        else {
-            int index = 0;
-            for (int number : tables)
-                if (number == tableNumber)
-                    return orders[index];
-                else index++;
-
-            return null;
-        }
+        throw new IllegalTableNumber(String.valueOf(tableNumber));
     }
 
     public void addDish(MenuItem dish, int tableNumber) throws IllegalTableNumber {
-        boolean isExist = false;
-        for (int i = 0; i < tables.length; i++) {
-            if (tables[i] == tableNumber) {
-                isExist = true;
-                break;
+        for (TableOrder to : orders) {
+            if (to.getTable() == tableNumber) {
+                to.add(dish);
             }
         }
-        if (!isExist) throw new IllegalTableNumber(String.valueOf(tableNumber));
-        else {
-            for (int number : tables)
-                if (number == tableNumber)
-                    orders[number].add(dish);
-
-        }
+        throw new IllegalTableNumber(String.valueOf(tableNumber));
     }
 
     public void removeOrder(int tableNumber) throws IllegalTableNumber {
-        boolean isExist = false;
-        for (int i = 0; i < tables.length; i++) {
-            if (tables[i] == tableNumber) {
-                isExist = true;
-                break;
+        for (int i = 0; i < orders.length; i++) {
+            if (orders[i].getTable() == tableNumber) {
+                TableOrder[] newTableOrder = new TableOrder[orders.length - 1];
+                System.arraycopy(orders, 0, newTableOrder, 0, i);
+                System.arraycopy(orders, i + 1, newTableOrder, i, newTableOrder.length - i);
+
+                orders = newTableOrder;
+                return;
             }
         }
-        if (!isExist) throw new IllegalTableNumber(String.valueOf(tableNumber));
-        else {
-            TableOrder[] newTableOrder = new TableOrder[orders.length - 1];
-            for (int i = 0; i < orders.length; i++) {
-                if (i == tableNumber) {
-                    System.arraycopy(orders, 0, newTableOrder, 0, i);
-                    System.arraycopy(orders, i + 1, newTableOrder, i, newTableOrder.length - i);
-                }
-            }
-            orders = newTableOrder;
-        }
+        throw new IllegalTableNumber(String.valueOf(tableNumber));
     }
 
     @Override

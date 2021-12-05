@@ -4,6 +4,7 @@ public class InternetOrder implements Order {
     private ListNode head, tail;
     private int size;
     private Customer customer;
+    private int Table;
 
     public InternetOrder() {
         head = tail = new ListNode();
@@ -192,5 +193,13 @@ public class InternetOrder implements Order {
 
     public void setCostumer(Customer costumer) {
         this.customer = costumer;
+    }
+
+    public int getTable() {
+        return Table;
+    }
+
+    public void setTable(int table) {
+        Table = table;
     }
 }
