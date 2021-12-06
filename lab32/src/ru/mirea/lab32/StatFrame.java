@@ -18,7 +18,5 @@ public class StatFrame extends JFrame {
         add(new JLabel("Total orders: " + tom.ordersQuantity()));
         add(new JLabel("Total price: " + iom.ordersCostSummary()));
         add(new JLabel("Total price: " + tom.ordersCostSummary()));
-
-
     }
 }

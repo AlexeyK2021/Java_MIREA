@@ -11,7 +11,8 @@ public class InfoFrame extends JFrame {
 
     InfoFrame(Order order, JButton deleteOrder) {
         super();
-        setLayout(new GridLayout(4, 1));
+        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        setSize(200, 100);
         Customer customer = order.getCostumer();
         super.setTitle("Order from" +
                 customer.getFirstName() + " " +
@@ -31,12 +32,14 @@ public class InfoFrame extends JFrame {
                             address.getApartmentNumber()
             );
             PersonInfo.add(name);
+            PersonInfo.add(new JLabel("Table № " + order.getTable()));
             PersonInfo.add(Address);
-            PersonInfo.setLayout(new GridLayout(2, 1));
+            PersonInfo.setLayout(new GridLayout(3, 1));
 
         } else if (order instanceof TableOrder) {
             PersonInfo.add(name);
-            PersonInfo.setLayout(new GridLayout(1, 1));
+            PersonInfo.add(new JLabel("Table № " + order.getTable()));
+            PersonInfo.setLayout(new GridLayout(2, 1));
         }
         add(PersonInfo);
         getFullInfo(order);
@@ -60,7 +63,7 @@ public class InfoFrame extends JFrame {
             }
         });
         add(deleteOrder);
-        pack();
+
     }
 
     public void getFullInfo(Order order) {

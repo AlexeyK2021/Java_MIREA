@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class CreateFrameRO extends JFrame {
     public CreateFrameRO(TablesOrdersManager restaurantOrders) {
+        super("Creating restaurant order");
         setVisible(true);
         setLayout(new BoxLayout(getContentPane(),BoxLayout.Y_AXIS));
         setSize(500, 500);

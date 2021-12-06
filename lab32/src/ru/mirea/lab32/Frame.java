@@ -22,13 +22,11 @@ public class Frame extends JFrame {
         setResizable(true);
         setSize(700, 700);
         setLayout(new GridLayout(1, 3));
-
         JButton addIO = new JButton("ADD");
 
         JPanel InternetPart = new JPanel();
         InternetPart.setLayout(new BorderLayout());
         InternetPart.add(addIO, BorderLayout.NORTH);
-        //InternetOrder.setLayout(new GridLayout(internetOrdersManager.ordersQuantity(), 1));
         InternetOrder.setLayout(new BoxLayout(InternetOrder, BoxLayout.Y_AXIS));
         InternetPart.add(InternetOrder);
 
@@ -78,7 +76,6 @@ public class Frame extends JFrame {
         RestaurantPart.setLayout(new BorderLayout());
 
         RestaurantPart.add(addRO, BorderLayout.NORTH);
-        //RestaurantOrder.setLayout(new GridLayout(tablesOrdersManager.ordersQuantity(), 1));
         RestaurantOrder.setLayout(new BoxLayout(RestaurantOrder, BoxLayout.Y_AXIS));
         RestaurantPart.add(RestaurantOrder);
 
@@ -97,7 +94,6 @@ public class Frame extends JFrame {
             }
         });
         add(RestaurantPart);
-        //pack();
     }
 
     public void Update() {
