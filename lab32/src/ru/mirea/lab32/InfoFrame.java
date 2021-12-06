@@ -18,14 +18,16 @@ public class InfoFrame extends JFrame {
                 customer.getSecondName());
 
         JLabel name = new JLabel("Name: " + order.getCostumer().getFirstName() + " " + order.getCostumer().getSecondName());
+
         if (order instanceof InternetOrder) {
             Address address = customer.getAddress();
             JLabel Address = new JLabel(
-                    address.getZipCode() + ","
-                            + address.getCityName() + ","
-                            + address.getStreetName() + " street,"
+                    "Address: " +
+                            address.getZipCode() + ", "
+                            + address.getCityName() + ", "
+                            + address.getStreetName() + " street, "
                             + address.getBuildingNumber()
-                            + address.getBuildingLetter() + "," +
+                            + address.getBuildingLetter() + ", " +
                             address.getApartmentNumber()
             );
             PersonInfo.add(name);
@@ -68,7 +70,7 @@ public class InfoFrame extends JFrame {
             Order.add(new JLabel(
                     "Name: " +
                             items[i].getName() +
-                            " Price: " +
+                            " \tPrice: " +
                             items[i].getPrice() +
                             " ₽"
             ));

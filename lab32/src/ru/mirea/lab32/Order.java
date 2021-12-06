@@ -12,8 +12,8 @@ public interface Order {
     MenuItem[] getItemsWithoutRepeat();
     String[] dishesNames();
     MenuItem[] sortedDishesByCost();
-    public Customer getCostumer();
-    public void setCostumer(Customer costumer);
-    public int getTable();
-    public void setTable(int table);
+    Customer getCostumer();
+    void setCostumer(Customer costumer);
+    int getTable();
+    void setTable(int Table);
 }

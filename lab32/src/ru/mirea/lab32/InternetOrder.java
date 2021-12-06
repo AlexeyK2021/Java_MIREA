@@ -187,18 +187,22 @@ public class InternetOrder implements Order {
         return array;
     }
 
+    @Override
     public Customer getCostumer() {
         return customer;
     }
 
+    @Override
     public void setCostumer(Customer costumer) {
         this.customer = costumer;
     }
 
+    @Override
     public int getTable() {
         return Table;
     }
 
+    @Override
     public void setTable(int table) {
         Table = table;
     }

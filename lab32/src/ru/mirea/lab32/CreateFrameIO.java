@@ -9,8 +9,8 @@ public class CreateFrameIO extends JFrame {
     CreateFrameIO(InternetOrdersManager internetOrdersManager) {
         super("Creating Internet Order");
         setVisible(true);
-        setLayout(new GridLayout(4, 1));
-        setSize(500, 500);
+        setLayout(new BoxLayout(getContentPane(),BoxLayout.Y_AXIS));
+        setSize(700, 700);
 
         JPanel Person = new JPanel();
         JTextField name = new JTextField();
@@ -165,7 +165,7 @@ public class CreateFrameIO extends JFrame {
         add(Items);
 
         JPanel FunctionalButtons = new JPanel();
-        FunctionalButtons.setLayout(new GridLayout(1, 2));
+        FunctionalButtons.setLayout(new BoxLayout(FunctionalButtons,BoxLayout.X_AXIS));
         JButton Save = new JButton("Save");
         JButton Cancel = new JButton("Cancel");
         FunctionalButtons.add(Save);
@@ -189,6 +189,7 @@ public class CreateFrameIO extends JFrame {
                                     Integer.parseInt(apartmentNumber.getText())
                             ));
                     InternetOrder order = new InternetOrder();
+                    order.setCostumer(customer);
                     for (MenuItem item : orders) {
                         order.add(item);
                     }
@@ -211,5 +212,6 @@ public class CreateFrameIO extends JFrame {
                 dispose();
             }
         });
+
     }
 }

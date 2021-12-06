@@ -12,9 +12,6 @@ public class Frame extends JFrame {
     InternetOrdersManager internetOrdersManager = new InternetOrdersManager();
     TablesOrdersManager tablesOrdersManager = new TablesOrdersManager();
 
-    public ArrayList<InternetOrder> internetOrders = new ArrayList<>();
-
-
     private JPanel InternetOrder = new JPanel();
     private JPanel RestaurantOrder = new JPanel();
 
@@ -22,18 +19,17 @@ public class Frame extends JFrame {
         super("Restaurant control panel");
         setDefaultCloseOperation(Frame.EXIT_ON_CLOSE);
         setVisible(true);
-        setResizable(false);
+        setResizable(true);
         setSize(700, 700);
         setLayout(new GridLayout(1, 3));
 
         JButton addIO = new JButton("ADD");
-        InternetOrder.add(addIO);
-        InternetOrder.setLayout(new GridLayout(2, 1));
 
         JPanel InternetPart = new JPanel();
-        InternetPart.setLayout(new GridLayout(2, 1));
-        InternetPart.add(addIO);
-        RestaurantOrder.setLayout(new GridLayout(internetOrdersManager.ordersQuantity(), 1));
+        InternetPart.setLayout(new BorderLayout());
+        InternetPart.add(addIO, BorderLayout.NORTH);
+        //InternetOrder.setLayout(new GridLayout(internetOrdersManager.ordersQuantity(), 1));
+        InternetOrder.setLayout(new BoxLayout(InternetOrder, BoxLayout.Y_AXIS));
         InternetPart.add(InternetOrder);
 
         addIO.addActionListener(new ActionListener() {
@@ -51,19 +47,19 @@ public class Frame extends JFrame {
         });
         add(InternetPart);
 
+
         JPanel ControlButtons = new JPanel();
-        ControlButtons.setLayout(new GridLayout(2, 1));
+        ControlButtons.setLayout(new BorderLayout());
         JButton Statistics = new JButton("Statistics");
         JButton Exit = new JButton("Exit");
-        ControlButtons.add(Statistics);
-        ControlButtons.add(Exit);
-        Statistics.setPreferredSize(new Dimension(100, 30));
-        Exit.setPreferredSize(new Dimension(100, 30));
+        ControlButtons.add(Statistics, BorderLayout.NORTH);
+        ControlButtons.add(Exit, BorderLayout.SOUTH);
 
         Statistics.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO: Окно статистики
+                StatFrame statFrame = new StatFrame(internetOrdersManager, tablesOrdersManager);
+
             }
         });
         Exit.addActionListener(new ActionListener() {
@@ -72,14 +68,18 @@ public class Frame extends JFrame {
                 System.exit(0);
             }
         });
+
         add(ControlButtons);
 
 
         JButton addRO = new JButton("ADD");
+
         JPanel RestaurantPart = new JPanel();
-        RestaurantPart.setLayout(new GridLayout(2, 1));
-        RestaurantPart.add(addRO);
-        RestaurantOrder.setLayout(new GridLayout(tablesOrdersManager.ordersQuantity(), 1));
+        RestaurantPart.setLayout(new BorderLayout());
+
+        RestaurantPart.add(addRO, BorderLayout.NORTH);
+        //RestaurantOrder.setLayout(new GridLayout(tablesOrdersManager.ordersQuantity(), 1));
+        RestaurantOrder.setLayout(new BoxLayout(RestaurantOrder, BoxLayout.Y_AXIS));
         RestaurantPart.add(RestaurantOrder);
 
 
@@ -104,11 +104,10 @@ public class Frame extends JFrame {
         RestaurantOrder.removeAll();
         InternetOrder.removeAll();
         Order[] internetOrders_ = internetOrdersManager.getOrders();
-        for (int i = 0; i < internetOrders_.length; i++) {
+        for (Order order : internetOrders_) {
             JButton orderButtonIO = new JButton("Order from " +
-                    internetOrders_[i].getCostumer().getFirstName() + " " +
-                    internetOrders_[i].getCostumer().getSecondName());
-            Order order1 = internetOrders_[i];
+                    order.getCostumer().getFirstName() + " " +
+                    order.getCostumer().getSecondName());
             orderButtonIO.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -117,8 +116,8 @@ public class Frame extends JFrame {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             try {
-                                internetOrdersManager.removeOrder(String.valueOf(order1.getTable()));
-                            }catch (IllegalTableNumber ITN){
+                                internetOrdersManager.removeOrder(String.valueOf(order.getTable()));
+                            } catch (IllegalTableNumber ITN) {
                                 System.out.println(ITN.getMessage());
                             }
                             InternetOrder.remove(orderButtonIO);
@@ -126,18 +125,17 @@ public class Frame extends JFrame {
                             InternetOrder.updateUI();
                         }
                     });
-                    new InfoFrame(order1, deleteOrderIO);
+                    new InfoFrame(order, deleteOrderIO);
                 }
             });
             InternetOrder.add(orderButtonIO);
         }
 
         Order[] restaurantOrders_ = tablesOrdersManager.orders;
-        for (int i = 0; i < restaurantOrders_.length; i++) {
+        for (Order order : restaurantOrders_) {
             JButton orderButtonRO = new JButton("Order from " +
-                    restaurantOrders_[i].getCostumer().getFirstName() + " " +
-                    restaurantOrders_[i].getCostumer().getSecondName());
-            Order order1 = restaurantOrders_[i];
+                    order.getCostumer().getFirstName() + " " +
+                    order.getCostumer().getSecondName());
             orderButtonRO.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -146,7 +144,7 @@ public class Frame extends JFrame {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             try {
-                                tablesOrdersManager.removeOrder(order1.getTable());
+                                tablesOrdersManager.removeOrder(order.getTable());
                             } catch (IllegalTableNumber ITN) {
                                 System.out.println(ITN.getMessage());
                             }
@@ -155,7 +153,7 @@ public class Frame extends JFrame {
                             RestaurantOrder.updateUI();
                         }
                     });
-                    new InfoFrame(order1, deleteOrderIO);
+                    new InfoFrame(order, deleteOrderIO);
                 }
             });
             RestaurantOrder.add(orderButtonRO);

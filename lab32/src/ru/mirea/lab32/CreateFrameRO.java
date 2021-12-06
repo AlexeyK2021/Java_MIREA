@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class CreateFrameRO extends JFrame {
     public CreateFrameRO(TablesOrdersManager restaurantOrders) {
         setVisible(true);
-        setLayout(new GridLayout(3, 1));
+        setLayout(new BoxLayout(getContentPane(),BoxLayout.Y_AXIS));
         setSize(500, 500);
 
         JPanel Person = new JPanel();
@@ -143,7 +143,7 @@ public class CreateFrameRO extends JFrame {
         add(Items);
 
         JPanel FunctionalButtons = new JPanel();
-        FunctionalButtons.setLayout(new GridLayout(1, 2));
+        FunctionalButtons.setLayout(new BoxLayout(FunctionalButtons,BoxLayout.X_AXIS));
         JButton Save = new JButton("Save");
         JButton Cancel = new JButton("Cancel");
         FunctionalButtons.add(Save);
