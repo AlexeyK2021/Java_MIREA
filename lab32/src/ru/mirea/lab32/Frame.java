@@ -1,11 +1,15 @@
 package ru.mirea.lab32;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Frame extends JFrame {
@@ -18,7 +22,6 @@ public class Frame extends JFrame {
     Frame() {
         super("Restaurant control panel");
         setDefaultCloseOperation(Frame.EXIT_ON_CLOSE);
-        setVisible(true);
         setResizable(true);
         setSize(700, 700);
         setLayout(new GridLayout(1, 3));
@@ -94,6 +97,7 @@ public class Frame extends JFrame {
             }
         });
         add(RestaurantPart);
+        setVisible(true);
     }
 
     public void Update() {
